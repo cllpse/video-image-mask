@@ -17,11 +17,11 @@ export default function Home() {
     <div style={{ display: "flex", width: "100%", height: "50dvh" }}>
       {loaded ? (
         <VideoImageMask
-          videoUrl="./video-2.mp4"
+          videoUrl="./video-1.mp4"
           videoBlur={true}
           fallbackUrl="./image-2.jpg"
           fallbackBlur={false}
-          maskUrl="./mask-2.svg"
+          maskUrl="./mask-1.svg"
           scrim={true}
         />
       ) : <></>}
