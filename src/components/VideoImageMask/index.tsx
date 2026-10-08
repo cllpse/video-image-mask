@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { styles } from "./styles.css";
 
-export default function VideoImageMask ({
+export default function VideoImageMask({
   videoUrl,
   videoBlur,
   fallbackUrl,
   fallbackBlur,
   maskUrl,
-  scrim,
+  videoScrim,
+  fallbackScrim,
   children
 }: {
   videoUrl: string;
@@ -18,7 +19,8 @@ export default function VideoImageMask ({
   fallbackUrl?: string;
   fallbackBlur?: boolean;
   maskUrl?: string;
-  scrim?: boolean;
+  videoScrim?: boolean;
+  fallbackScrim?: boolean;
   children?: React.ReactNode;
 }) {
   const { ref, inView } = useInView({
@@ -46,16 +48,16 @@ export default function VideoImageMask ({
 
   useEffect(() => {
     setStyleMask({
-        maskImage: `url(${maskUrl})`,
-        maskPosition: "center",
-        maskRepeat: "contain",
-        maskSize: "cover",
-        WebkitMaskImage: `url(${maskUrl})`,
-        WebkitMaskPosition: "center",
-        WebkitMaskRepeat: "no-repeat",
-        WebkitMaskSize: "contain",
-        filter: videoBlur ? "blur(30px)" : "",
-      });
+      maskImage: `url(${maskUrl})`,
+      maskPosition: "center",
+      maskRepeat: "contain",
+      maskSize: "cover",
+      WebkitMaskImage: `url(${maskUrl})`,
+      WebkitMaskPosition: "center",
+      WebkitMaskRepeat: "no-repeat",
+      WebkitMaskSize: "contain",
+      filter: videoBlur ? "blur(30px)" : "",
+    });
   }, [maskUrl, videoBlur]);
 
   return (
@@ -69,9 +71,13 @@ export default function VideoImageMask ({
       }}
     >
       <div
-        className={styles.styleVideoBackgroundFallback}
+        className={styles.styleFallbackBackgroundFallback}
         style={styleFallback}
       />
+
+      {fallbackScrim && (
+        <div className={styles.styleFallbackScrim} />
+      )}
 
       {fallbackPath && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -96,7 +102,7 @@ export default function VideoImageMask ({
         <source src={videoUrl} type="video/mp4" />
       </video>
 
-      {scrim && (
+      {videoScrim && (
         <div className={styles.styleVideoBackgroundScrim} style={styleMask} />
       )}
 

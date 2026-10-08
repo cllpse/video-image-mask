@@ -64,8 +64,10 @@ export const styles = {
     height: "100%",
     content: "",
     background:
-      "linear-gradient(rgba(33, 34, 34, 0.69) -7.18%, rgba(33, 34, 34, 0) 100%)",
+      "linear-gradient(black 0%, transparent 33%)",
     zIndex: 2,
+    mixBlendMode: "multiply",
+    opacity: 0.75,
   }),
 
   styleVideoBackgroundPlayer: style({
@@ -86,8 +88,9 @@ export const styles = {
     height: "100%",
     content: "",
     background:
-      "linear-gradient(rgba(33, 34, 34, 0.69) -7.18%, rgba(33, 34, 34, 0) 100%)",
+      "linear-gradient(cyan 50%, transparent 50%)",
     zIndex: 4,
+    opacity: 0.5,
   }),
 
   styleVideoBackgroundContent: style({
